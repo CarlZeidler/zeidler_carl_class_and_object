@@ -13,6 +13,7 @@ public class Ball : ProcessingLite.GP21
     int rStroke;
     int gStroke;
     int bStroke;
+    bool respawning = false;
 
     Player players;
     
@@ -38,6 +39,11 @@ public class Ball : ProcessingLite.GP21
         Fill(rFill, gFill, bFill);
         Stroke(rStroke, gStroke, bStroke);
         Circle(position.x, position.y, size);
+    }
+
+    public void Dead()
+    {
+        position = new Vector2(Random.Range(Width * 0.3f, Width * 0.7f), Random.Range(Height * 0.3f, Height * 0.7f));
     }
 
     public void UpdatePos()
@@ -81,22 +87,19 @@ public class Ball : ProcessingLite.GP21
     {
         float maxDistance = size1 + size2;
 
-        //first a quick check to see if we are too far away in x or y direction
-        //if we are far away we don't collide so just return false and be done.
         if (Mathf.Abs(x1 - x2) > maxDistance || Mathf.Abs(y1 - y2) > maxDistance)
         {
             return false;
         }
-        //we then run the slower distance calculation
-        //Distance uses Pythagoras to get exact distance, if we still are to far away we are not colliding.
         else if (Vector2.Distance(new Vector2(x1, y1), new Vector2(x2, y2)) > maxDistance)
         {
             return false;
         }
-        //We now know the points are closer then the distance so we are colliding!
         else
         {
             return true;
         }
     }
 }
+
+

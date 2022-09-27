@@ -14,7 +14,7 @@ public class Player : ProcessingLite.GP21
     private int rStroke;
     private int gStroke;
     private int bStroke;
-    private bool gameOver;
+    public bool gameOver;
     public Vector2 playerPos;
     public float newPlayerSize;
     private float line1;
@@ -89,6 +89,11 @@ public class Player : ProcessingLite.GP21
             TextSize(60);
             Text("Press R to Respawn", Width / 2, Height / 3);
             
+            for (int i = 0; i< balls.Length;i++)
+            {
+                balls[i].Dead();
+            }
+
             if (Input.GetKeyDown(KeyCode.R))
             {
                 gameOver = false;
