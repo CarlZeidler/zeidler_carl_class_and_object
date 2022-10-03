@@ -89,14 +89,11 @@ public class Player : ProcessingLite.GP21
             TextSize(60);
             Text("Press R to Respawn", Width / 2, Height / 3);
             
-            for (int i = 0; i< balls.Length;i++)
-            {
-                balls[i].Dead();
-            }
 
             if (Input.GetKeyDown(KeyCode.R))
             {
                 gameOver = false;
+                Start();
             }
 
         }
